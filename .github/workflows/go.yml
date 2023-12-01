@@ -26,11 +26,11 @@ jobs:
 
     - name: Run built binary & Test
       run: |
-        ./GinDemo
+        nohup ./GinDemo > /dev/null 2>&1 &
 
         sleep 5
 
-        response=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/getTest)
+        response=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8081/getTest)
         if [ $response -eq 200 ]
         then
           echo "Test passed"
