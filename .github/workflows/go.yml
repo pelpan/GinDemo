@@ -28,7 +28,7 @@ jobs:
       run: ./GinDemo
 
     - name: HTTP Get Test
-      run:
+      run: |
         sleep 5
 
         response=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/getTest)
