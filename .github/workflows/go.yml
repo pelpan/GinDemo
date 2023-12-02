@@ -5,40 +5,39 @@ name: GinDemo build & request test
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ['main']
   pull_request:
-    branches: [ "main" ]
+    branches: ['main']
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Set up Go
-      uses: actions/setup-go@v4
-      with:
-        go-version: '1.20'
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.20'
 
-    - name: Build
-      run: go build -v ./...
+      - name: Build
+        run: go build -v ./...
 
-    - name: Run built binary & Test
-      run: |
-        nohup ./GinDemo > /dev/null 2>&1 &
+      - name: Run built binary & Test
+        run: |
+          nohup ./GinDemo > /dev/null 2>&1 &
 
-        sleep 5
+          sleep 5
 
-        response=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8081/getTest)
-        if [ $response -eq 200 ]
-        then
-          echo "Test passed"
-        else
-          echo "Test failed"
-          exit 1
-        fi
+          response=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/getTest)
+          if [ $response -eq 200 ]
+          then
+            echo "Test passed"
+          else
+            echo "Test failed"
+            exit 1
+          fi
 
     # -- Add Test file later ... --
     # - name: Test
-      # run: go test -v ./...
+    # run: go test -v ./...

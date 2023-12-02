@@ -24,7 +24,7 @@ func checkPortAvailability(port int) bool {
 }
 
 func findAvailablePort(port int) (int, error) {
-	for startPort := port + 1; startPort < 65535; startPort++ {
+	for startPort := port ; startPort < 65535; startPort++ {
 		fmt.Println("checking port: ", startPort)
 		if checkPortAvailability(startPort) {
 			return startPort, nil
