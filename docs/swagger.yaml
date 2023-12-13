@@ -1,0 +1,79 @@
+definitions:
+  model.Result:
+    type: object
+info:
+  contact: {}
+paths:
+  /getTest:
+    get:
+      description: apiDemo
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code": 0,"data": name}'
+          schema:
+            type: string
+      summary: apiDemo
+      tags:
+      - apiDemo
+  /postJsonTest:
+    post:
+      description: apiDemo
+      parameters:
+      - description: Data
+        in: body
+        name: data
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: result
+          schema:
+            allOf:
+            - $ref: '#/definitions/model.Result'
+            - properties:
+                ' bankNos':
+                  items:
+                    type: string
+                  type: array
+                name:
+                  type: string
+              type: object
+      summary: apiDemo
+      tags:
+      - apiDemo
+  /postTest:
+    post:
+      description: apiDemo
+      parameters:
+      - description: name
+        in: formData
+        name: name
+        type: string
+      - description: bankNo
+        in: formData
+        name: bankNo
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: result
+          schema:
+            allOf:
+            - $ref: '#/definitions/model.Result'
+            - properties:
+                ' bankNos':
+                  items:
+                    type: string
+                  type: array
+                name:
+                  type: string
+              type: object
+      summary: apiDemo
+      tags:
+      - apiDemo
+swagger: "2.0"
