@@ -1,0 +1,133 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/getTest": {
+            "get": {
+                "description": "apiDemo",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "apiDemo"
+                ],
+                "summary": "apiDemo",
+                "responses": {
+                    "200": {
+                        "description": "{\"code\": 0,\"data\": name}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/postJsonTest": {
+            "post": {
+                "description": "apiDemo",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "apiDemo"
+                ],
+                "summary": "apiDemo",
+                "parameters": [
+                    {
+                        "description": "Data",
+                        "name": "data",
+                        "in": "body",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "result",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/model.Result"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        " bankNos": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "/postTest": {
+            "post": {
+                "description": "apiDemo",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "apiDemo"
+                ],
+                "summary": "apiDemo",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "name",
+                        "name": "name",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "string",
+                        "description": "bankNo",
+                        "name": "bankNo",
+                        "in": "formData"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "result",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/model.Result"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        " bankNos": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "model.Result": {
+            "type": "object"
+        }
+    }
+}
